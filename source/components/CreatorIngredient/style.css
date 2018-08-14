@@ -1,0 +1,11 @@
+.form {
+    margin: 0;
+    padding: 0;
+    border: 2px black solid ;
+    border-radius: 8px;
+
+}
+
+#price {
+    text-align: right;
+}

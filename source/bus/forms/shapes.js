@@ -3,8 +3,8 @@ import { object, string, boolean, number } from 'yup';
 
 export const creatorIngredient = {
     shape: {
-        name:  '',
-        price: 0,
+        name:  'Привет',
+        price: 12.5,
     },
     schema: object().shape({
         name: string()

@@ -10,17 +10,17 @@ export default class CreatorIngredient extends Component {
     formikForm = createRef();
 
     _submitForm = (formData, actions) => {
-        this._createPost(formData);
+        this._createIngredient(formData);
         actions.resetForm();
     };
 
-    _createPost = ({ name }) => {
+    _createIngredient = ({ name, price }) => {
         console.log(`name ->`, name);
-        // if (!comment) {
-        //     return null;
-        // }
-        //
-        // this.props.actions.createPostAsync(comment);
+        console.log(`price ->`, Math.round(price*100)/100);
+        if (!name) {
+            return null;
+        }
+        this.props.actions.createIngredientAsync(name);
     };
 
     _submitFormOnEnter = (event) => {
@@ -35,28 +35,38 @@ export default class CreatorIngredient extends Component {
         // const { profile } = this.props;
 
         return (
-            <Formik
-                initialValues = { creatorIngredient.shape }
-                ref = { this.formikForm }
-                render = { () => {
-                    return (
-                        <section >
-                            <Form>
-                                <Field
-                                    component = 'textarea'
-                                    name = 'name'
-                                    placeholder = { `Название ингредиента.` }
-                                    type = 'text'
-                                    onKeyPress = { this._submitFormOnEnter }
-                                />
-                                <input type = 'submit' value = 'Сохранить' />
-                            </Form>
-                        </section>
-                    );
-                } }
-                validationSchema = { creatorIngredient.schema }
-                onSubmit = { this._submitForm }
-            />
+            <div className='form'>
+                <h3> Новый ингредиент </h3>
+                <Formik
+                    initialValues = { creatorIngredient.shape }
+                    ref = { this.formikForm }
+                    render = { () => {
+                        return (
+                            <section >
+                                <Form>
+                                    <Field
+                                        // component = 'textarea'
+                                        name = 'name'
+                                        placeholder = { `Название ингредиента.` }
+                                        type = 'text'
+                                        onKeyPress = { this._submitFormOnEnter }
+                                    />
+                                    <Field
+                                        id =  'price'
+                                        name = 'price'
+                                        placeholder = { `0.00` }
+                                        type = 'text'
+                                        onKeyPress = { this._submitFormOnEnter }
+                                    />
+                                    <input type = 'submit' value = 'Сохранить' />
+                                </Form>
+                            </section>
+                        );
+                    } }
+                    validationSchema = { creatorIngredient.schema }
+                    onSubmit = { this._submitForm }
+                />
+            </div>
         );
     }
 }
