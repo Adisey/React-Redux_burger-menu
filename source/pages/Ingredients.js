@@ -1,14 +1,15 @@
 // Core
 import React, { Component } from 'react';
 
-// Components
-// import { } from '../components';
+//Components
+import { CreatorIngredient } from '../components';
 
 export default class Ingredients extends Component {
     render () {
         return (
             <div>
-                Ингредиенты
+                <h3>Ингредиенты</h3>
+                <CreatorIngredient />
             </div>
         );
     }
