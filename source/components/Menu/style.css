@@ -1,0 +1,45 @@
+.menu {
+    margin: 0 20px;
+    display: flex;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    padding: 0;
+    height: 100%;
+    list-style-type: none;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 200%;
+}
+
+li:hover {
+    background-color: #bcbcbc;
+    cursor: pointer;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+}
+a:hover {
+    text-decoration: none;
+    color: black;
+
+}
+a:focus {
+    text-decoration: none;
+    color: black;
+    background-color: #e3e3e3;
+}
+
+

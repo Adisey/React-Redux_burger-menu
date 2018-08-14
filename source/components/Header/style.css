@@ -1,0 +1,22 @@
+/** {*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*border: 1px black dotted;*/
+    /*border-radius: 5px;*/
+/*}*/
+.header {
+    /*background-color: #aaaaaa;*/
+    height: 60px;
+    width: 100%;
+    display: flex;
+    padding: 0 25px;
+    border-bottom: 3px solid #000000;
+
+}
+
+.logo {
+    height: 60px;
+    width: 60px;
+    padding: 0;
+    margin: 0 25px;
+}
