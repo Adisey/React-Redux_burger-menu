@@ -1,6 +1,7 @@
 // Core
 import React, { Component, createRef } from 'react';
 import { Formik, Form, Field } from 'formik';
+import cx from 'classnames';
 
 // Instruments
 import './style.css';
@@ -21,7 +22,7 @@ export default class CreatorIngredient extends Component {
         const priceCent = Math.round(price*100);
         // .toFixed(2) для отображения.
 
-        this.props.actions.createIngredientAsync({name, priceCent});
+        this.props.actions.createIngredientAsync({ name, priceCent });
     };
 
     _submitFormOnEnter = (event) => {
@@ -33,40 +34,64 @@ export default class CreatorIngredient extends Component {
     };
 
     render () {
-        // const { profile } = this.props;
+        const { isFetching } = this.props;
 
         return (
-            <div className = 'form'>
-                <h3> Новый ингредиент </h3>
-                <Formik
-                    initialValues = { creatorIngredient.shape }
-                    ref = { this.formikForm }
-                    render = { () => {
-                        return (
-                            <section >
-                                <Form>
-                                    <Field
-                                        // component = 'textarea'
-                                        name = 'name'
-                                        placeholder = { `Название ингредиента.` }
-                                        type = 'text'
-                                        onKeyPress = { this._submitFormOnEnter }
-                                    />
-                                    <Field
-                                        id = 'price'
-                                        name = 'price'
-                                        placeholder = { `0.00` }
-                                        type = 'text'
-                                        onKeyPress = { this._submitFormOnEnter }
-                                    />
-                                    <input type = 'submit' value = 'Сохранить' />
-                                </Form>
-                            </section>
-                        );
-                    } }
-                    validationSchema = { creatorIngredient.schema }
-                    onSubmit = { this._submitForm }
-                />
+            <div className = 'main'>
+                <div className = 'picture'>
+                    pic
+                </div>
+                <div className = 'description'>
+                    <h3> Новый ингредиент </h3>
+                    <Formik
+                        initialValues = { creatorIngredient.shape }
+                        ref = { this.formikForm }
+                        render = { (props) => {
+                            const { isValid, touched, errors } = props;
+                            const nameStyle = cx({ invalidInput: !isValid && touched.name && errors.name });
+                            const priceStyle = cx({ invalidInput: !isValid && touched.price && errors.price });
+
+                            return (
+                                <div className = 'mainForm'>
+                                    <Form>
+                                        <div className = 'field'>
+                                            <label htmlFor = 'name'>Название</label>
+                                            <Field
+                                                className = { nameStyle }
+                                                disabled = { isFetching }
+                                                id = 'name'
+                                                name = 'name'
+                                                onKeyPress = { this._submitFormOnEnter }
+                                                placeholder = { `Название ингредиента.` }
+                                                type = 'text'
+                                            />
+                                        </div>
+                                        <div className = 'spandiv'><span>{touched.name && errors.name ? errors.name : '.'}</span></div>
+                                        <div className = 'field'>
+                                            <label htmlFor = 'price'>Цена</label>
+                                            <Field
+                                                className = { priceStyle }
+                                                disabled = { isFetching }
+                                                id = 'price'
+                                                name = 'price'
+                                                onKeyPress = { this._submitFormOnEnter }
+                                                placeholder = { `0.00` }
+                                                type = 'number'
+                                            />
+                                        </div>
+                                        <div className = 'spandiv'><span>{touched.price && errors.price ? errors.price : '.'}</span></div>
+                                        <div className = 'field'>
+                                            <div />
+                                            <input type = 'submit' value = 'Сохранить' />
+                                        </div>
+                                    </Form>
+                                </div>
+                            );
+                        } }
+                        validationSchema = { creatorIngredient.schema }
+                        onSubmit = { this._submitForm }
+                    />
+                </div>
             </div>
         );
     }

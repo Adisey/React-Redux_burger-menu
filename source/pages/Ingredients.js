@@ -40,7 +40,7 @@ export default class Ingredients extends Component {
         const { actions, Ingredients } = this.props;
 
         return (
-            <div>
+            <div className='mainpage'>
                 <Spinner />
                 <h2>Ингредиенты</h2>
                 <CreatorIngredient actions = { actions } />

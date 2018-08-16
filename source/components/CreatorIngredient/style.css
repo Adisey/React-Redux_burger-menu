@@ -1,11 +1,69 @@
-.form {
+.main {
     margin: 0;
     padding: 0;
     border: 2px black solid ;
     border-radius: 8px;
-
+    width: 500px;
+    height: 170px;
+    display: flex;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
+.picture {
+    margin: 15px;
+    height: 100px;
+    width: 100px;
+    border: 1px black solid ;
+    border-radius: 2px;
+    text-align: center;
+    padding: 10px;
+}
+.description {
+    width: 100%;
+    margin: 0 5px;
+}
+.mainForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.field {
+    margin: 0px;
+    display: flex;
+    Justify-content: space-between;
+
+}
+#name {
+    width: 250px;
+}
 #price {
     text-align: right;
+    width: 100px;
+}
+
+
+.invalidInput {
+    border: 2px solid red;
+}
+
+invalidInput:focus {
+     border: 2px solid crimson;
+     box-shadow: 0 5px 6px -6px #f40009;
+}
+
+h3 {
+    text-align: center;
+    color: blue;
+}
+.spandiv {
+    display: flex;
+    Justify-content: flex-end;
+
+}
+span {
+    align: right;
+    font-size: 75%;
+    color: red;
+
 }
