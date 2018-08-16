@@ -15,12 +15,13 @@ export default class CreatorIngredient extends Component {
     };
 
     _createIngredient = ({ name, price }) => {
-        console.log(`name ->`, name);
-        console.log(`price ->`, Math.round(price*100)/100);
         if (!name) {
             return null;
         }
-        this.props.actions.createIngredientAsync(name);
+        const priceCent = Math.round(price*100);
+        // .toFixed(2) для отображения.
+
+        this.props.actions.createIngredientAsync({name, priceCent});
     };
 
     _submitFormOnEnter = (event) => {
@@ -35,7 +36,7 @@ export default class CreatorIngredient extends Component {
         // const { profile } = this.props;
 
         return (
-            <div className='form'>
+            <div className = 'form'>
                 <h3> Новый ингредиент </h3>
                 <Formik
                     initialValues = { creatorIngredient.shape }
@@ -52,7 +53,7 @@ export default class CreatorIngredient extends Component {
                                         onKeyPress = { this._submitFormOnEnter }
                                     />
                                     <Field
-                                        id =  'price'
+                                        id = 'price'
                                         name = 'price'
                                         placeholder = { `0.00` }
                                         type = 'text'
