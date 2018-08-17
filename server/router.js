@@ -1,33 +1,29 @@
 const db = require('./db');
 
 module.exports = async function (app) {
-    app.get('/api', async (req, res) => {
-        console.log(`GET`);
+    app.get('/ingredient', async (req, res) => {
         let _status = 200;
-        let strings = {};
+        _message = 'the request has succeeded';
+        let ingredients = {};
 
         try {
-            strings = await db.readJSON();
-            if (!strings.originalString || !strings.processedString) {
-                throw new SyntaxError({ name: `SyntaxError`, message: `В БД на верные данные !`, status: 404 });
-            }
-
+            ingredients = await db.getIngredients();
+            // ToDo: Нудно продумать как верефицироать данные перед отдачей
         } catch (error) {
             if (error.name === `SyntaxError`) {
                 _status = SyntaxError.status;
-                strings = SyntaxError.message;
+                _message = SyntaxError.message;
                 console.log(`SyntaxError ->`, SyntaxError);
             } else {
                 _status = 500;
-                strings = error;
+                _message = error;
                 console.log(`Error read File ->`, error);
             }
         } finally {
-            console.log(`strings in router ->`, strings);
             res
                 .set("Access-Control-Allow-Origin", "*")
                 .status(_status)
-                .send(strings);
+                .send({data:ingredients, message:_message});
         }
     });
     app.post('/ingredient', async (req, res) => {

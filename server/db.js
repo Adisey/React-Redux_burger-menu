@@ -3,7 +3,7 @@ const tools = require('./tools');
 const dataIngredient = `${__dirname}\\data\\ingredient.json`;
 
 async function createIngredient (ingredient) {
-    const ingredients = await getIngredients();
+    const ingredients = await this.getIngredients();
 
     ingredient.id = tools.getUniqueID();
     while (ingredients.filter((i) => i.id === ingredient.id).length) {
@@ -24,7 +24,6 @@ async function createIngredient (ingredient) {
     });
 
     return ingredient;
-
 }
 
 function getIngredients () {

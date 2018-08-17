@@ -4,6 +4,7 @@
   "author": "Andrey Smirnov <iadisey@gmail.com>",
   "private": true,
   "scripts": {
+    "startNode": "node server",
     "start": "nodemon",
     "build:config": "webpack --config=\"./webpack/webpack.config.babel.js\" --env production --display-reasons",
     "build:dev": "cross-env-shell NODE_ENV=production BUILD_ENV=development npm run build:config",
@@ -20,8 +21,7 @@
     "soundcheck": "jest --config=\"./jest/jest.config.json\"",
     "prettier": "prettier-eslint --list-different \"./source/**/*.js\"; prettier-eslint --write \"./source/**/*.js\"",
     "deploy": "run-s build:prod-github-pages gh-pages",
-    "gh-pages": "gh-pages -d build",
-    "startNode": "node server"
+    "gh-pages": "gh-pages -d build"
   },
   "dependencies": {
     "classnames": "^2.2.6",

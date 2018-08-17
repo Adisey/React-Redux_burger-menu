@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators({
             createIngredientAsync: ingredientsActions.createIngredientAsync,
+            fetchIngrediensAsync:  ingredientsActions.fetchIngrediensAsync,
         }, dispatch),
     };
 };
@@ -34,15 +35,16 @@ const mapDispatchToProps = (dispatch) => {
 export default class Ingredients extends Component {
     componentDidMount () {
         const { actions } = this.props;
+
+        actions.fetchIngrediensAsync();
     }
 
     render () {
         const { actions, Ingredients } = this.props;
 
         return (
-            <div className='mainpage'>
+            <div className = 'mainpage'>
                 <Spinner />
-                <h2>Ингредиенты</h2>
                 <CreatorIngredient actions = { actions } />
             </div>
         );
