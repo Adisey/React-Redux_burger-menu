@@ -1,14 +1,11 @@
 // Core
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
 // Styles
-import './style.css';
-
+import './styles.css';
 
 // Instruments
 import { book } from '../../navigation/book';
-
 
 export default class Menu extends Component {
     render () {

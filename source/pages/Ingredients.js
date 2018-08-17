@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Instruments
-import './style.css';
+import './styles.css';
 
 //Components
 import { CreatorIngredient, Spinner } from '../components';

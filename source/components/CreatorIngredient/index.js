@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import cx from 'classnames';
 
 // Instruments
-import './style.css';
+import './styles.css';
 import { creatorIngredient } from '../../bus/forms/shapes';
 
 export default class CreatorIngredient extends Component {
@@ -61,9 +61,9 @@ export default class CreatorIngredient extends Component {
                                                 disabled = { isFetching }
                                                 id = 'name'
                                                 name = 'name'
-                                                onKeyPress = { this._submitFormOnEnter }
                                                 placeholder = { `Название ингредиента.` }
                                                 type = 'text'
+                                                onKeyPress = { this._submitFormOnEnter }
                                             />
                                         </div>
                                         <div className = 'spandiv'><span>{touched.name && errors.name ? errors.name : '.'}</span></div>
@@ -74,9 +74,9 @@ export default class CreatorIngredient extends Component {
                                                 disabled = { isFetching }
                                                 id = 'price'
                                                 name = 'price'
-                                                onKeyPress = { this._submitFormOnEnter }
                                                 placeholder = { `0.00` }
                                                 type = 'number'
+                                                onKeyPress = { this._submitFormOnEnter }
                                             />
                                         </div>
                                         <div className = 'spandiv'><span>{touched.price && errors.price ? errors.price : '.'}</span></div>

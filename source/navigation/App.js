@@ -5,12 +5,13 @@ import { hot } from 'react-hot-loader';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 // Styles
-import './style.css';
+import './styles.css';
 
 // Components
 import { Header } from '../components';
 import { Burgers, Ingredients } from '../pages';
 import { book } from './book';
+
 // Actions
 //import { authAction } from '../bus/auth/actions';
 
@@ -32,15 +33,7 @@ const mapDispatchToProps = {
     mapDispatchToProps
 )
 export default class App extends Component {
-    componentDidMount () {
-        //        this.props.initializedAsync();
-    }
     render () {
-        //      const { isAuthenticated, isInitialized } = this.props;
-
-        //        if (!isInitialized) {
-        //            return <Loading />;
-        //        }
         return (
             <div>
                 <Header />
