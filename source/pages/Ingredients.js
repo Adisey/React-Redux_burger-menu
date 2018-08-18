@@ -8,12 +8,10 @@ import FlipMove from 'react-flip-move';
 import './styles.css';
 
 //Components
-import { CreatorIngredient, Spinner } from '../components';
+import { CreatorIngredient, Spinner, Ingredient, Catcher } from '../components';
 
 //Actionns
 import { ingredientsActions } from '../bus/ingredients/actions';
-import Catcher from "../components/Catcher";
-import Ingredient from "../components/Ingredient";
 
 const mapStateToProps = (state) => {
     return {
@@ -48,11 +46,11 @@ export default class Ingredients extends Component {
         const IngredientsJSX = ingredients.map((ingredient) => {
             return (
                 <Catcher key = { ingredient.get('id') }>
-                        <Ingredient
-                            id = { ingredient.get('id') }
-                            name = { ingredient.get('name') }
-                            priceCent = { ingredient.get('priceCent') }
-                        />
+                    <Ingredient
+                        id = { ingredient.get('id') }
+                        name = { ingredient.get('name') }
+                        priceCent = { ingredient.get('priceCent') }
+                    />
                 </Catcher>
             );
         });
@@ -66,3 +64,7 @@ export default class Ingredients extends Component {
         );
     }
 }
+
+// ToDo: Удалить 
+// ToDo: Редактировать 
+// ToDo: Загрузить картинку 

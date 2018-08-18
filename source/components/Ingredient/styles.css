@@ -1,3 +1,49 @@
 .mainIngredient {
-    border: #bcbcbc;
+    margin: 10px;
+    padding: 0;
+    border: 1px #000000 solid;
+    border-radius: 8px;
+    width: 600px;
+    height: 100px;
+    display: flex;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+.pictureShIng {
+    margin: 15px;
+    height: 50px;
+    width: 50px;
+    border: 1px black solid;
+    border-radius: 2px;
+    text-align: center;
+    padding: 10px;
+}
+
+.descriptionShIng {
+    width: 450px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.infoShIng {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    Justify-content: space-between;
+}
+
+.nameShIng {
+    font-size: large;
+    font-weight: bold;
+}
+.priceShIng {
+    font-size: large;
+}
+
+
+.barShIng {
+    margin: 5px;
+    padding: 5px;
 }

@@ -38,10 +38,10 @@ export default class CreatorIngredient extends Component {
 
         return (
             <div className = 'main'>
-                <div className = 'picture'>
+                <div className = 'pictureCrIng'>
                     pic
                 </div>
-                <div className = 'description'>
+                <div className = 'descriptionCrIng'>
                     <h3> Новый ингредиент </h3>
                     <Formik
                         initialValues = { creatorIngredient.shape }

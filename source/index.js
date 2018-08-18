@@ -19,5 +19,3 @@ render(
     </Provider>,
     document.getElementById('app')
 );
-
-// ToDo: Нарисовать форму для ингрединетов

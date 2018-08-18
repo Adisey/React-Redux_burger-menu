@@ -3,13 +3,13 @@
     padding: 0;
     border: 2px blue solid;
     border-radius: 8px;
-    width: 500px;
+    width: 600px;
     height: 170px;
     display: flex;
     font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
-.picture {
+.pictureCrIng {
     margin: 15px;
     height: 100px;
     width: 100px;
@@ -19,8 +19,8 @@
     padding: 10px;
 }
 
-.description {
-    width: 100%;
+.descriptionCrIng {
+    width: 450px;
     margin: 0 5px;
 }
 
@@ -34,7 +34,6 @@
     margin: 0;
     display: flex;
     Justify-content: space-between;
-
 }
 
 #name {
