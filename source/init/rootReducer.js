@@ -5,10 +5,10 @@ import { routerReducer as router } from 'react-router-redux';
 // Reducers
 
 import { uiReducer as ui } from '../bus/ui/reducer';
-import { ingredientsReducer } from '../bus/ingredients/reducer';
+import { ingredientsReducer as ingredients } from '../bus/ingredients/reducer';
 
 export const rootReducer = combineReducers({
-    ingredientsReducer,
+    ingredients,
     router,
     ui,
 });

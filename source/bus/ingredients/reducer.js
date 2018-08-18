@@ -3,6 +3,7 @@ import { fromJS, List } from 'immutable';
 
 // Instruments
 import { type } from './types';
+
 const initalState = List();
 
 export const ingredientsReducer = (state = initalState, action) => {
