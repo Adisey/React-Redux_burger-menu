@@ -1,6 +1,7 @@
 // Core
 import React, { Component, createRef } from 'react';
 import { Formik, Form, Field } from 'formik';
+import Dropzone from "react-dropzone";
 import cx from 'classnames';
 
 // Instruments
@@ -8,6 +9,13 @@ import './styles.css';
 import { creatorIngredient } from '../../bus/forms/shapes';
 
 export default class CreatorIngredient extends Component {
+    constructor (props) {
+        super(props);
+    }
+    state = {
+        imgSrc: null,
+    };
+
     formikForm = createRef();
 
     _submitForm = (formData, actions) => {
@@ -19,7 +27,7 @@ export default class CreatorIngredient extends Component {
         if (!name) {
             return null;
         }
-        const priceCent = Math.round(price*100);
+        const priceCent = Math.round(price * 100);
         // .toFixed(2) для отображения.
 
         this.props.actions.createIngredientAsync({ name, priceCent });
@@ -33,25 +41,50 @@ export default class CreatorIngredient extends Component {
         }
     };
 
+    _handleDrop = (files) => {
+        const currentFile = files[0];
+        const myFileItemReader = new FileReader();
+
+        myFileItemReader.addEventListener('load', () => {
+            console.log(`reader.result ->`, myFileItemReader.result);
+            this.setState({
+                imgSrc: myFileItemReader.result,
+            });
+        }, false);
+        myFileItemReader.readAsDataURL(currentFile);
+
+    };
+
     render () {
         const { isFetching } = this.props;
+        const { imgSrc } =  this.state;
+
+        console.log(`this.props ->`, this.props);
+        console.log(`this.state ->`, this.state);
 
         return (
-            <div className = 'main'>
-                <div className = 'pictureCrIng'>
-                    pic
-                </div>
-                <div className = 'descriptionCrIng'>
-                    <h3> Новый ингредиент </h3>
-                    <Formik
-                        initialValues = { creatorIngredient.shape }
-                        ref = { this.formikForm }
-                        render = { (props) => {
-                            const { isValid, touched, errors } = props;
-                            const nameStyle = cx({ invalidInput: !isValid && touched.name && errors.name });
-                            const priceStyle = cx({ invalidInput: !isValid && touched.price && errors.price });
+            <Formik
+                initialValues = { creatorIngredient.shape }
+                ref = { this.formikForm }
+                render = { (props) => {
+                    const { isValid, touched, errors } = props;
+                    const nameStyle = cx({ invalidInput: !isValid && touched.name && errors.name });
+                    const priceStyle = cx({ invalidInput: !isValid && touched.price && errors.price });
 
-                            return (
+                    return (
+                        <div className = 'main'>
+                            <div className = 'loadPicture'>
+                                <Dropzone
+                                    accept = 'image/*'
+                                    className = 'previewPicture'
+                                    multiple = { false }
+                                    onDrop = { this._handleDrop.bind(this) }>
+                                    {imgSrc !== null ? <img className = 'picture' src = { imgSrc } />: 'Загрузить картинку'}
+                                </Dropzone>
+                            </div>
+
+                            <div className = 'descriptionCrIng'>
+                                <h3> Новый ингредиент </h3>
                                 <div className = 'mainForm'>
                                     <Form>
                                         <div className = 'field'>
@@ -66,7 +99,8 @@ export default class CreatorIngredient extends Component {
                                                 onKeyPress = { this._submitFormOnEnter }
                                             />
                                         </div>
-                                        <div className = 'spandiv'><span>{touched.name && errors.name ? errors.name : '.'}</span></div>
+                                        <div className = 'spandiv'>
+                                            <span>{touched.name && errors.name ? errors.name : '.'}</span></div>
                                         <div className = 'field'>
                                             <label htmlFor = 'price'>Цена</label>
                                             <Field
@@ -79,20 +113,22 @@ export default class CreatorIngredient extends Component {
                                                 onKeyPress = { this._submitFormOnEnter }
                                             />
                                         </div>
-                                        <div className = 'spandiv'><span>{touched.price && errors.price ? errors.price : '.'}</span></div>
+                                        <div className = 'spandiv'>
+                                            <span>{touched.price && errors.price ? errors.price : '.'}</span></div>
                                         <div className = 'field'>
                                             <div />
                                             <input type = 'submit' value = 'Сохранить' />
                                         </div>
                                     </Form>
                                 </div>
-                            );
-                        } }
-                        validationSchema = { creatorIngredient.schema }
-                        onSubmit = { this._submitForm }
-                    />
-                </div>
-            </div>
+                            </div>
+                        </div>
+
+                    );
+                } }
+                validationSchema = { creatorIngredient.schema }
+                onSubmit = { this._submitForm }
+            />
         );
     }
 }

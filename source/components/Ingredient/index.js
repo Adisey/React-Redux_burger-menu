@@ -25,18 +25,22 @@ export default class Ingredient extends Component {
                     </div>
                 </div>
                 <div className = 'barShIng'>
-                    <img
-                        alt = 'удалить'
-                        height = '20'
-                        src = '../../../static/remove-50x50.png'
-                        width = '20'
-                    />
-                    <img
-                        alt = 'редактировать'
-                        height = '20'
-                        src = '../../../static/edit-50x50.png'
-                        width = '20'
-                    />
+                    { false ?
+                        // включить когда будет функция
+                        <img
+                            alt = 'удалить'
+                            height = '20'
+                            src = '../../../static/remove-50x50.png'
+                            width = '20'
+                        />: null}
+                    { false ?
+                        // включить когда будет функция
+                        <img
+                            alt = 'редактировать'
+                            height = '20'
+                            src = '../../../static/edit-50x50.png'
+                            width = '20'
+                        />: null}
 
                 </div>
             </section>
