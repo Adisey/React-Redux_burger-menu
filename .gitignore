@@ -35,6 +35,9 @@ tags
 # Main
 .idea/
 
+# Data
+server/data
+
 # CMake
 cmake-build-debug/
 cmake-build-release/
