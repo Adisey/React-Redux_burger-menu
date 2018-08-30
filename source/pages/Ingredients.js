@@ -50,6 +50,7 @@ export default class Ingredients extends Component {
                         id = { ingredient.get('id') }
                         name = { ingredient.get('name') }
                         priceCent = { ingredient.get('priceCent') }
+                        image = { ingredient.get('image') }
                     />
                 </Catcher>
             );
@@ -65,6 +66,5 @@ export default class Ingredients extends Component {
     }
 }
 
-// ToDo: Удалить 
-// ToDo: Редактировать 
-// ToDo: Загрузить картинку 
+// ToDo: Удалить элемент и все его включения в готовое блюдо
+// ToDo: Редактировать и пересчитать все в готовое блюда в которые он входит

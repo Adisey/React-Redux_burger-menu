@@ -10,13 +10,14 @@ export default class Ingredient extends Component {
             name,
             id,
             priceCent,
+            image,
         } = this.props;
         const price = (priceCent/100).toFixed(2);
 
         return (
             <section className = 'mainIngredient'>
                 <div className = 'pictureShIng'>
-                        pic
+                    {image !== null ? <img className = 'ShowPictureIngredient' src = { image } />: ''}
                 </div>
                 <div className = 'descriptionShIng'>
                     <div className = 'infoShIng'>

@@ -8,6 +8,9 @@ import cx from 'classnames';
 import './styles.css';
 import { creatorIngredient } from '../../bus/forms/shapes';
 
+// Const
+const imageMaxSize = 51200; // bites
+
 export default class CreatorIngredient extends Component {
     constructor (props) {
         super(props);
@@ -19,18 +22,21 @@ export default class CreatorIngredient extends Component {
     formikForm = createRef();
 
     _submitForm = (formData, actions) => {
+        formData.image= this.state.imgSrc;
         this._createIngredient(formData);
         actions.resetForm();
+        this.setState({ imgSrc: null });
+
     };
 
-    _createIngredient = ({ name, price }) => {
+    _createIngredient = ({ name, price, image }) => {
         if (!name) {
             return null;
         }
         const priceCent = Math.round(price * 100);
         // .toFixed(2) для отображения.
 
-        this.props.actions.createIngredientAsync({ name, priceCent });
+        this.props.actions.createIngredientAsync({ name, priceCent, image });
     };
 
     _submitFormOnEnter = (event) => {
@@ -41,12 +47,25 @@ export default class CreatorIngredient extends Component {
         }
     };
 
-    _handleDrop = (files) => {
+    _handleDrop = (files, rejectedFiles) => {
+        if (rejectedFiles && rejectedFiles.length >0) {
+            const rejectFile = rejectedFiles[0];
+            const rejectFileSize = rejectFile.size;
+            const rejectFileName = rejectFile.name;
+
+            if (rejectFileSize > imageMaxSize) {
+                const message = `Допустимый размер при загрузке - ${imageMaxSize/1024} Kb. \n Размер файла ${rejectFileName} -> ${(rejectFileSize/1024).toFixed(3)} Kb. \n Выберите другой файл.`;
+
+                alert(message);
+
+                return;
+            }
+
+        }
         const currentFile = files[0];
         const myFileItemReader = new FileReader();
 
         myFileItemReader.addEventListener('load', () => {
-            console.log(`reader.result ->`, myFileItemReader.result);
             this.setState({
                 imgSrc: myFileItemReader.result,
             });
@@ -58,9 +77,6 @@ export default class CreatorIngredient extends Component {
     render () {
         const { isFetching } = this.props;
         const { imgSrc } =  this.state;
-
-        console.log(`this.props ->`, this.props);
-        console.log(`this.state ->`, this.state);
 
         return (
             <Formik
@@ -77,9 +93,10 @@ export default class CreatorIngredient extends Component {
                                 <Dropzone
                                     accept = 'image/*'
                                     className = 'previewPicture'
+                                    maxSize = { imageMaxSize }
                                     multiple = { false }
                                     onDrop = { this._handleDrop.bind(this) }>
-                                    {imgSrc !== null ? <img className = 'picture' src = { imgSrc } />: 'Загрузить картинку'}
+                                    {imgSrc !== null ? <img className = 'showCreateIngredientPicture' src = { imgSrc } />: 'Загрузить картинку'}
                                 </Dropzone>
                             </div>
 

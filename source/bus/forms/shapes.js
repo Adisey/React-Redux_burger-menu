@@ -13,6 +13,7 @@ export const creatorIngredient = {
     shape: {
         name:  'Капуста',
         price: 12.5,
+        image: null,
     },
     schema: object().shape({
         name: string(thisName)

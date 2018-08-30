@@ -4,19 +4,29 @@
     border: 1px #000000 solid;
     border-radius: 8px;
     width: 600px;
-    height: 100px;
+    height: 85px;
     display: flex;
     font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
 .pictureShIng {
+    align-self: center;
     margin: 15px;
     height: 50px;
     width: 50px;
     border: 1px black solid;
-    border-radius: 2px;
-    text-align: center;
-    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    Justify-content: center;
+    align-items: center;
+    padding: 1px;
+}
+
+.ShowPictureIngredient{
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+
 }
 
 .descriptionShIng {
