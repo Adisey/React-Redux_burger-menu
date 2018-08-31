@@ -26,3 +26,15 @@ export const creatorIngredient = {
             .positive(positive),
     }),
 };
+export const creatorBurger = {
+    shape: {
+        name:  'Бигмак-01',
+        image: null,
+    },
+    schema: object().shape({
+        name: string(thisName)
+            .required(namerequired)
+            .min(3, nameMin3)
+            .max(255, nameMax),
+    }),
+};

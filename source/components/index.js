@@ -4,12 +4,16 @@ import Menu from './Menu';
 import CreatorIngredient from './CreatorIngredient';
 import Catcher from './Catcher';
 import Ingredient from './Ingredient';
+import IngredientsJSX from './IngredientsJSX';
+import CreatorBurger from './CreatorBurger';
 
 export {
     Menu,
     Spinner,
     Header,
+    CreatorBurger,
     CreatorIngredient,
     Catcher,
-    Ingredient
+    Ingredient,
+    IngredientsJSX,
 };

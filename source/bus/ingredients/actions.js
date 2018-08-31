@@ -22,7 +22,7 @@ export const ingredientsActions ={
             payload: ingredient,
         };
     },
-    fetchIngrediensAsync: (ingredients) => {
+    fetchIngredientsAsync: (ingredients) => {
         return {
             type:    type.FETCH_INGREDIENTS_ASYNC,
             payload: ingredients,

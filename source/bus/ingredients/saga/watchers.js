@@ -14,6 +14,6 @@ function* watcherFetchIngredients () {
     yield takeEvery(type.FETCH_INGREDIENTS_ASYNC, fillIngredients);
 }
 
-export function* watcherIngrediens () {
+export function* watcherIngredients () {
     yield all([call(watcherCreateIngredient), call(watcherFetchIngredients)]);
 }

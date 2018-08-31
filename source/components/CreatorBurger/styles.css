@@ -1,16 +1,20 @@
+/** {*/
+    /*border: 1px green solid;*/
+/*}*/
 
-.mainCreateIngredient {
+
+.mainCreateBurger {
     margin: 10px;
     padding: 0;
     border: 2px blue solid;
     border-radius: 8px;
     height: 150px;
-    width: 600px;
+    width: 700px;
     display: flex;
     font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
-.loadPictureCreateIngredient {
+.loadPictureCreateBurger {
     margin: 0;
     height: 100%;
     width: 150px;
@@ -19,7 +23,7 @@
 
 }
 
-.previewPictureCreateIngredient {
+.previewPictureCreateBurger {
     margin: 20px;
     height: 100px;
     width: 100px;
@@ -33,35 +37,35 @@
     cursor: pointer;
 }
 
-.showCreateIngredientPicture {
+.showCreateBurgerPicture {
     height: 100px;
     width: 100px;
     border-radius: 100px;
 }
 
 
-.descriptionCreateIngredient {
+.descriptionCreateBurger {
     width: 450px;
     margin: 0;
 }
 
-.mainFormCreateIngredient {
+.mainFormCreateBurger {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.fieldCreateIngredient {
+.fieldCreateBurger {
     margin: 0 5px;
     display: flex;
     Justify-content: space-between;
 }
 
-#nameCreateIngredient {
+#nameCreateBurger {
     width: 250px;
 }
 
-#priceCreateIngredient {
+#priceCreateBurger {
     text-align: right;
     width: 100px;
 }
@@ -82,7 +86,7 @@ h3 {
 
 }
 
-.spanDivCreateIngredient {
+.spanDivCreateBurger {
     display: flex;
     Justify-content: flex-end;
 

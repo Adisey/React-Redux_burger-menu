@@ -6,8 +6,10 @@ import { routerReducer as router } from 'react-router-redux';
 
 import { uiReducer as ui } from '../bus/ui/reducer';
 import { ingredientsReducer as ingredients } from '../bus/ingredients/reducer';
+import { burgersReducer as burgers } from '../bus/burgers/reducer';
 
 export const rootReducer = combineReducers({
+    burgers,
     ingredients,
     router,
     ui,

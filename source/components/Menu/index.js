@@ -13,6 +13,12 @@ export default class Menu extends Component {
             <div className = 'menu'>
                 <ul>
                     <li>
+                        <NavLink to = { book.newBurger }>
+                            Собрать Бургер
+                        </NavLink>
+
+                    </li>
+                    <li>
                         <NavLink to = { book.burgers }>
                             Бургеры
                         </NavLink>

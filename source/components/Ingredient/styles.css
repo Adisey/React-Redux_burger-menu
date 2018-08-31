@@ -19,7 +19,7 @@
     display: flex;
     Justify-content: center;
     align-items: center;
-    padding: 1px;
+    padding: 0;
 }
 
 .ShowPictureIngredient{
@@ -54,6 +54,9 @@
 
 
 .barShIng {
+    display: flex;
+    Justify-content: center;
+    align-items: center;
     margin: 5px;
     padding: 5px;
 }

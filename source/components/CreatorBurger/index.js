@@ -6,38 +6,38 @@ import cx from 'classnames';
 
 // Instruments
 import './styles.css';
-import { creatorIngredient } from '../../bus/forms/shapes';
+import { creatorBurger } from '../../bus/forms/shapes';
 
 // Const
 import { imageMaxSize } from '../../init/middleware/core';
 
-export default class CreatorIngredient extends Component {
+export default class CreatorBurger extends Component {
     constructor (props) {
         super(props);
     }
+
     state = {
         imgSrc: null,
     };
     formikForm = createRef();
-    
+
+
     _submitForm = (formData, actions) => {
         formData.image= this.state.imgSrc;
-        this._createIngredient(formData);
+        this._createBurger(formData);
         actions.resetForm();
         this.setState({ imgSrc: null });
 
     };
 
-    _createIngredient = ({ name, price, image }) => {
+    _createBurger = ({ name, price, image }) => {
         if (!name) {
             return null;
         }
-        const priceCent = Math.round(price * 100);
-        // .toFixed(2) для отображения.
-
-        this.props.actions.createIngredientAsync({ name, priceCent, image });
+        const priceCent = 200;
+        console.log(`this.props.actions ->`, this.props.actions);
+        this.props.actions.createBurgerAsync({ name, priceCent, image });
     };
-
     _submitFormOnEnter = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -72,66 +72,50 @@ export default class CreatorIngredient extends Component {
         myFileItemReader.readAsDataURL(currentFile);
 
     };
-
     render () {
         const { isFetching } = this.props;
-        const { imgSrc } =  this.state;
+        const { imgSrc } = this.state;
 
         return (
             <Formik
-                initialValues = { creatorIngredient.shape }
+                initialValues = { creatorBurger.shape }
                 ref = { this.formikForm }
                 render = { (props) => {
                     const { isValid, touched, errors } = props;
                     const nameStyle = cx({ invalidInput: !isValid && touched.name && errors.name });
-                    const priceStyle = cx({ invalidInput: !isValid && touched.price && errors.price });
 
                     return (
-                        <div className = 'mainCreateIngredient'>
-                            <div className = 'loadPictureCreateIngredient'>
+                        <div className = 'mainCreateBurger'>
+                            <div className = 'loadPictureCreateBurger'>
                                 <Dropzone
                                     accept = 'image/*'
-                                    className = 'previewPictureCreateIngredient'
+                                    className = 'previewPictureCreateBurger'
                                     maxSize = { imageMaxSize }
                                     multiple = { false }
                                     onDrop = { this._handleDrop.bind(this) }>
-                                    {imgSrc !== null ? <img className = 'showCreateIngredientPicture' src = { imgSrc } />: 'Загрузить картинку'}
+                                    {imgSrc !== null ? <img className = 'showCreateBurgerPicture' src = { imgSrc } />: 'Загрузить картинку'}
                                 </Dropzone>
                             </div>
 
-                            <div className = 'descriptionCreateIngredient'>
-                                <h3> Новый ингредиент </h3>
-                                <div className = 'mainFormCreateIngredient'>
+                            <div className = 'descriptionCreateBurger'>
+                                <h3> Новый Бургер </h3>
+                                <div className = 'mainFormCreateBurger'>
                                     <Form>
-                                        <div className = 'fieldCreateIngredient'>
+                                        <div className = 'fieldCreateBurger'>
                                             <label htmlFor = 'name'>Название</label>
                                             <Field
                                                 className = { nameStyle }
                                                 disabled = { isFetching }
-                                                id = 'nameCreateIngredient'
+                                                id = 'nameCreateBurger'
                                                 name = 'name'
                                                 placeholder = { `Название ингредиента.` }
                                                 type = 'text'
                                                 onKeyPress = { this._submitFormOnEnter }
                                             />
                                         </div>
-                                        <div className = 'spanDivCreateIngredient'>
+                                        <div className = 'spanDivCreateBurger'>
                                             <span>{touched.name && errors.name ? errors.name : '.'}</span></div>
-                                        <div className = 'fieldCreateIngredient'>
-                                            <label htmlFor = 'price'>Цена</label>
-                                            <Field
-                                                className = { priceStyle }
-                                                disabled = { isFetching }
-                                                id = 'priceCreateIngredient'
-                                                name = 'price'
-                                                placeholder = { `0.00` }
-                                                type = 'number'
-                                                onKeyPress = { this._submitFormOnEnter }
-                                            />
-                                        </div>
-                                        <div className = 'spanDivCreateIngredient'>
-                                            <span>{touched.price && errors.price ? errors.price : '.'}</span></div>
-                                        <div className = 'fieldCreateIngredient'>
+                                        <div className = 'fieldCreateBurger'>
                                             <div />
                                             <input type = 'submit' value = 'Сохранить' />
                                         </div>
@@ -142,9 +126,17 @@ export default class CreatorIngredient extends Component {
 
                     );
                 } }
-                validationSchema = { creatorIngredient.schema }
+                validationSchema = { creatorBurger.schema }
                 onSubmit = { this._submitForm }
             />
+
         );
     }
-}
+
+
+
+
+
+
+
+    }

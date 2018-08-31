@@ -1,4 +1,5 @@
+import NewBurger from './NewBurger';
 import Burgers from './Burgers';
 import Ingredients from './Ingredients';
 
-export { Burgers, Ingredients };
+export { NewBurger, Burgers, Ingredients };

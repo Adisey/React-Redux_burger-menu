@@ -20,4 +20,23 @@ export const api = {
             });
         },
     },
+    burger: {
+        create (burger) {
+            return fetch(`${MAIN_URL}/burger`, {
+                method:  'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify( burger ),
+            });
+        },
+        fetch () {
+            return fetch(`${MAIN_URL}/burger`, {
+                method:  'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        },
+    },
 };

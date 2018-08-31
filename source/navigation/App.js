@@ -9,7 +9,7 @@ import './styles.css';
 
 // Components
 import { Header } from '../components';
-import { Burgers, Ingredients } from '../pages';
+import { Burgers, Ingredients, NewBurger } from '../pages';
 import { book } from './book';
 
 // Actions
@@ -39,9 +39,10 @@ export default class App extends Component {
                 <Header />
                 <div className = 'content'>
                     <Switch>
-                        <Route component = { Burgers } path = { book.burgers } />
+                        <Route component = { NewBurger }   path = { book.newBurger } />
+                        <Route component = { Burgers }     path = { book.burgers } />
                         <Route component = { Ingredients } path = { book.ingredients } />
-                        <Redirect to = { book.burgers } />
+                        <Redirect to = { book.newBurger } />
                     </Switch>
                 </div>
             </div>

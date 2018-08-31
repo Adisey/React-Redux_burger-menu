@@ -24,6 +24,8 @@ const routerMiddleware = craateRouterMiddleware(history);
 const sagaMiddleware = createSagaMiddleware();
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = __DEV__ && devtools ? devtools : compose;
+const imageMaxSize = 51200; // bites
+
 
 const middleware = [sagaMiddleware, customThunk, routerMiddleware];
 
@@ -33,4 +35,4 @@ if (__DEV__) {
 
 const enhancedStore = composeEnhancers(applyMiddleware(...middleware));
 
-export { enhancedStore, sagaMiddleware, history };
+export { enhancedStore, sagaMiddleware, history, imageMaxSize };

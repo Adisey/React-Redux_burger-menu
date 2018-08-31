@@ -2,8 +2,9 @@
 import { all, call } from 'redux-saga/effects';
 
 // Wathers
-import { watcherIngrediens } from '../bus/ingredients/saga/watchers';
+import { watcherIngredients } from '../bus/ingredients/saga/watchers';
+import { watcherburgers } from '../bus/burgers/saga/watchers';
 
 export function* rootSaga () {
-    yield all([call(watcherIngrediens)]);
+    yield all([call(watcherIngredients), call(watcherburgers)]);
 }

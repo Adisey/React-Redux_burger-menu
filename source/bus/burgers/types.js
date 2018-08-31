@@ -1,0 +1,8 @@
+export const type = {
+    // Syn
+    CREATE_BURGER:       'CREATE_BURGER',
+    FILL_BURGERS:        'FILL_BURGERS',
+    // Asyn
+    CREATE_BURGER_ASYNC: 'CREATE_BURGER_ASYNC',
+    FETCH_BURGERS_ASYNC: 'FETCH_BURGERS_ASYNC',
+};

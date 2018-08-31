@@ -15,6 +15,7 @@ export function* fillIngredients () {
         if (response.status !== 200) {
             throw new Error(message);
         }
+        // console.log(`ingredients fillIngredients->`, ingredients);
         yield put(ingredientsActions.fillIngredients(ingredients));
     } catch (error) {
         yield put(uiActions.emitError(error, 'FillIngredients worker'));

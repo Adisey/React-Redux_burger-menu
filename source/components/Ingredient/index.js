@@ -11,6 +11,7 @@ export default class Ingredient extends Component {
             id,
             priceCent,
             image,
+            actionMode,
         } = this.props;
         const price = (priceCent/100).toFixed(2);
 
@@ -26,21 +27,33 @@ export default class Ingredient extends Component {
                     </div>
                 </div>
                 <div className = 'barShIng'>
-                    { false ?
-                        // включить когда будет функция
+                    { actionMode === 'View' ?
                         <img
                             alt = 'удалить'
                             height = '20'
                             src = '../../../static/remove-50x50.png'
                             width = '20'
                         />: null}
-                    { false ?
-                        // включить когда будет функция
+                    { actionMode === 'View'?
                         <img
                             alt = 'редактировать'
                             height = '20'
                             src = '../../../static/edit-50x50.png'
                             width = '20'
+                        />: null}
+                    { actionMode === 'Add' ?
+                        <img
+                            alt = 'добавить'
+                            height = '50'
+                            src = '../../../static/plus-50x50.png'
+                            width = '50'
+                        />: null}
+                    { actionMode === 'Remove' ?
+                        <img
+                            alt = 'удалить'
+                            height = '50'
+                            src = '../../../static/minus-50x50.png'
+                            width = '50'
                         />: null}
 
                 </div>

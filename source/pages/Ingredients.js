@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux';
 import FlipMove from 'react-flip-move';
 
 // Instruments
-import './styles.css';
+import './Ingredients.css';
 
 //Components
-import { CreatorIngredient, Spinner, Ingredient, Catcher } from '../components';
+import { CreatorIngredient, Spinner, Ingredient, Catcher, IngredientsJSX } from '../components';
 
 //Actionns
 import { ingredientsActions } from '../bus/ingredients/actions';
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators({
             createIngredientAsync: ingredientsActions.createIngredientAsync,
-            fetchIngrediensAsync:  ingredientsActions.fetchIngrediensAsync,
+            fetchIngredientsAsync: ingredientsActions.fetchIngredientsAsync,
         }, dispatch),
     };
 };
@@ -37,30 +37,27 @@ export default class Ingredients extends Component {
     componentDidMount () {
         const { actions } = this.props;
 
-        actions.fetchIngrediensAsync();
+        actions.fetchIngredientsAsync();
     }
 
     render () {
         const { actions, ingredients } = this.props;
-
-        const IngredientsJSX = ingredients.map((ingredient) => {
-            return (
-                <Catcher key = { ingredient.get('id') }>
-                    <Ingredient
-                        id = { ingredient.get('id') }
-                        name = { ingredient.get('name') }
-                        priceCent = { ingredient.get('priceCent') }
-                        image = { ingredient.get('image') }
-                    />
-                </Catcher>
-            );
-        });
+        // Поменять на 'View' когда будет функция удаления и изменения
+        const actionMode = 'View__';
 
         return (
-            <div className = 'mainpage'>
+            <div className = 'mainPageIngredients'>
                 <Spinner />
-                <CreatorIngredient actions = { actions } />
-                <FlipMove>{IngredientsJSX}</FlipMove>
+                <CreatorIngredient
+                    actions = { actions }
+                />
+                <FlipMove>
+                    <IngredientsJSX
+                        actionMode = { actionMode }
+                        actions = { actions }
+                        ingredients = { ingredients }
+                    />
+                </FlipMove>
             </div>
         );
     }
