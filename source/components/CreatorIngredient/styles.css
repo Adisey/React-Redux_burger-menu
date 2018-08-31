@@ -33,6 +33,11 @@
     cursor: pointer;
 }
 
+.previewPictureCreateIngredient:hover   {
+    box-shadow: 0 0 10px rgba(0,0,255,1.5);
+}
+
+
 .showCreateIngredientPicture {
     height: 100px;
     width: 100px;

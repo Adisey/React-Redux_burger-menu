@@ -10,8 +10,7 @@ export default class IngredientsJSX extends Component {
     }
 
     render () {
-        const { actions, ingredients, actionMode } = this.props;
-
+        const { actions, ingredients, actionMode, localAction } = this.props;
         const JSX = ingredients.map((ingredient) => {
             return (
                 <Catcher key = { ingredient.get('id') }>
@@ -19,8 +18,10 @@ export default class IngredientsJSX extends Component {
                         actionMode = { actionMode }
                         id = { ingredient.get('id') }
                         image = { ingredient.get('image') }
+                        localAction = { localAction }
                         name = { ingredient.get('name') }
                         priceCent = { ingredient.get('priceCent') }
+
                     />
                 </Catcher>
             );

@@ -21,7 +21,6 @@ export default class CreatorBurger extends Component {
     };
     formikForm = createRef();
 
-
     _submitForm = (formData, actions) => {
         formData.image= this.state.imgSrc;
         this._createBurger(formData);
@@ -30,13 +29,14 @@ export default class CreatorBurger extends Component {
 
     };
 
-    _createBurger = ({ name, price, image }) => {
+    _createBurger = ({ name, image }) => {
         if (!name) {
             return null;
         }
-        const priceCent = 200;
-        console.log(`this.props.actions ->`, this.props.actions);
-        this.props.actions.createBurgerAsync({ name, priceCent, image });
+        const { createBurgerAsync } = this.props.actions;
+        const { selectedIngredientsID, burgerPriceCent } = this.props;
+
+        createBurgerAsync({ name, burgerPriceCent, image, selectedIngredientsID });
     };
     _submitFormOnEnter = (event) => {
         if (event.key === 'Enter') {
@@ -73,7 +73,7 @@ export default class CreatorBurger extends Component {
 
     };
     render () {
-        const { isFetching } = this.props;
+        const { isFetching, selectedIngredientsID } = this.props;
         const { imgSrc } = this.state;
 
         return (
@@ -133,10 +133,4 @@ export default class CreatorBurger extends Component {
         );
     }
 
-
-
-
-
-
-
-    }
+}

@@ -8,7 +8,7 @@ import FlipMove from 'react-flip-move';
 import './NewBurger.css';
 
 //Components
-import { Spinner, IngredientsJSX, CreatorBurger } from '../components';
+import { IngredientsJSX, CreatorBurger } from '../components';
 
 //Actionns
 import { ingredientsActions } from '../bus/ingredients/actions';
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators({
             fetchIngredientsAsync: ingredientsActions.fetchIngredientsAsync,
-            createBurgerAsync: burgersActions.createBurgerAsync,
+            createBurgerAsync:     burgersActions.createBurgerAsync,
         }, dispatch),
     };
 };
@@ -35,31 +35,57 @@ const mapDispatchToProps = (dispatch) => {
 )
 
 export default class Burgers extends Component {
+    state = {
+        availableIngredients: this.props.ingredients.sort(),
+        selectedIngredients:  [],
+        burgerPriceCent:      0, // ToDo:  Посчитать сумму
+    };
+
     componentDidMount () {
         const { actions } = this.props;
 
         actions.fetchIngredientsAsync();
     }
+
+    _addIngredient = (id) => {
+        console.log(`_addIngredient ->`, id);
+        this.setState({ selectedIngredients: this.state.availableIngredients });
+
+        // this.selectedIngredients = this.state.availableIngredients;
+
+    };
+    _removeIngredient = (id) => {
+        console.log(`_removeIngredient ->`, id);
+    };
+
     render () {
-        const { actions, ingredients } = this.props;
+        const { actions } = this.props;
         const actionModeRemove = 'Remove';
         const actionModeAdd = 'Add';
-        const availableIngredients = ingredients.sort();
-        const selectedIngredients = ingredients.sort();
+        const { availableIngredients, selectedIngredients, burgerPriceCent }  = this.state;
 
-        console.log(`actions ->`, actions);
+        const selectedIngredientsID = selectedIngredients
+            .map((ingredient) => {
+                return ingredient.get('id');
+            });
+
+        // console.log(`selectedIngredientsID ->`, selectedIngredientsID);
+        // console.log(`selectedIngredients ->`, selectedIngredients);
 
         return (
             <div className = 'mainPageNewBurger'>
                 <div className = 'newPageNewBurger'>
                     <CreatorBurger
                         actions = { actions }
+                        burgerPriceCent = { burgerPriceCent }
+                        selectedIngredientsID = { selectedIngredientsID }
                     />
                     <FlipMove>
                         <IngredientsJSX
                             actionMode = { actionModeRemove }
                             actions = { actions }
                             ingredients = { selectedIngredients }
+                            localAction = { this._removeIngredient }
                         />
                     </FlipMove>
                 </div>
@@ -69,6 +95,7 @@ export default class Burgers extends Component {
                             actionMode = { actionModeAdd }
                             actions = { actions }
                             ingredients = { availableIngredients }
+                            localAction = { this._addIngredient }
                         />
                     </FlipMove>
                 </div>
@@ -78,4 +105,4 @@ export default class Burgers extends Component {
     }
 }
 
-// ToDo: Добавление Игредиента в Бургер
+// ToDo: Добавление/Удаление Игредиентов в Бургер
