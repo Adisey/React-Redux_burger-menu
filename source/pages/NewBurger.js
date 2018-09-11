@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import FlipMove from 'react-flip-move';
+import { List } from 'immutable';
 
 // Instruments
 import './NewBurger.css';
@@ -34,18 +35,26 @@ const mapDispatchToProps = (dispatch) => {
     mapDispatchToProps
 )
 
-export default class Burgers extends Component {
-    state = {
-        availableIngredients: this.props.ingredients.sort(),
-        selectedIngredients:  [],
-        burgerPriceCent:      0, // ToDo:  Посчитать сумму
-    };
-
+export default class NewBurger extends Component {
     componentDidMount () {
         const { actions } = this.props;
 
         actions.fetchIngredientsAsync();
+        console.log(`componentDidMount this.state ->`, this.state);
+        // console.log(` componentDidMountthis.state ->`, props.props);
+        
+        // console.log(`ingredients ->`, ingredients);
+
+        // this.setState({ availableIngredients: this.state.availableIngredients });
+
     }
+
+    state = {
+        availableIngredients: List([]),
+        selectedIngredients:  List([]),
+        burgerPriceCent:      0, // ToDo:  Посчитать сумму
+    };
+
 
     _addIngredient = (id) => {
         console.log(`_addIngredient ->`, id);
@@ -63,6 +72,7 @@ export default class Burgers extends Component {
         const actionModeRemove = 'Remove';
         const actionModeAdd = 'Add';
         const { availableIngredients, selectedIngredients, burgerPriceCent }  = this.state;
+        console.log(`render this.state ->`, this.state);
 
         const selectedIngredientsID = selectedIngredients
             .map((ingredient) => {
