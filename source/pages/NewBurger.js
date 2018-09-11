@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import FlipMove from 'react-flip-move';
-import { List } from 'immutable';
+import { List, toJS } from 'immutable';
 
 // Instruments
 import './NewBurger.css';
@@ -13,19 +13,24 @@ import { IngredientsJSX, CreatorBurger } from '../components';
 
 //Actionns
 import { ingredientsActions } from '../bus/ingredients/actions';
+import { newBburgersActions } from '../bus/newBurger/actions';
 import { burgersActions } from "../bus/burgers/actions";
 
 const mapStateToProps = (state) => {
     return {
-        ingredients: state.ingredients,
+        ingredients:          state.ingredients,
+        availableIngredients: state.newBurgers.get('availableIngredients'),
+        selectedIngredients:  state.newBurgers.get('selectedIngredients'),
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators({
-            fetchIngredientsAsync: ingredientsActions.fetchIngredientsAsync,
-            createBurgerAsync:     burgersActions.createBurgerAsync,
+            fetchIngredientsAsync:       ingredientsActions.fetchIngredientsAsync,
+            fetchBurgerIngredientsAsync: newBburgersActions.fetchBurgerIngredientsAsync,
+            fillBurgerIngredients:       newBburgersActions.fillBurgerIngredients,
+            createBurgerAsync:           burgersActions.createBurgerAsync,
         }, dispatch),
     };
 };
@@ -34,27 +39,17 @@ const mapDispatchToProps = (dispatch) => {
     mapStateToProps,
     mapDispatchToProps
 )
-
 export default class NewBurger extends Component {
     componentDidMount () {
         const { actions } = this.props;
 
         actions.fetchIngredientsAsync();
-        console.log(`componentDidMount this.state ->`, this.state);
-        // console.log(` componentDidMountthis.state ->`, props.props);
-        
-        // console.log(`ingredients ->`, ingredients);
-
-        // this.setState({ availableIngredients: this.state.availableIngredients });
+        // ToDo: Это не красиво, нужно разобраться как это грузить отдельно.
+        setTimeout(() => {
+            actions.fillBurgerIngredients(this.props.ingredients);
+        }, 1000);
 
     }
-
-    state = {
-        availableIngredients: List([]),
-        selectedIngredients:  List([]),
-        burgerPriceCent:      0, // ToDo:  Посчитать сумму
-    };
-
 
     _addIngredient = (id) => {
         console.log(`_addIngredient ->`, id);
@@ -68,35 +63,32 @@ export default class NewBurger extends Component {
     };
 
     render () {
-        const { actions } = this.props;
+        const {
+            actions,
+            availableIngredients,
+            selectedIngredients,
+        } = this.props;
         const actionModeRemove = 'Remove';
         const actionModeAdd = 'Add';
-        const { availableIngredients, selectedIngredients, burgerPriceCent }  = this.state;
-        console.log(`render this.state ->`, this.state);
 
-        const selectedIngredientsID = selectedIngredients
-            .map((ingredient) => {
-                return ingredient.get('id');
-            });
 
-        // console.log(`selectedIngredientsID ->`, selectedIngredientsID);
-        // console.log(`selectedIngredients ->`, selectedIngredients);
+        console.log(`Render NewBurger -------------------------> this.props ->`, this.props);
 
         return (
             <div className = 'mainPageNewBurger'>
                 <div className = 'newPageNewBurger'>
                     <CreatorBurger
                         actions = { actions }
-                        burgerPriceCent = { burgerPriceCent }
-                        selectedIngredientsID = { selectedIngredientsID }
+                        // burgerPriceCent = { burgerPriceCent }
+                        // selectedIngredientsID = { selectedIngredientsID }
                     />
                     <FlipMove>
-                        <IngredientsJSX
-                            actionMode = { actionModeRemove }
-                            actions = { actions }
-                            ingredients = { selectedIngredients }
-                            localAction = { this._removeIngredient }
-                        />
+                    <IngredientsJSX
+                    actionMode = { actionModeRemove }
+                    actions = { actions }
+                    ingredients = { selectedIngredients }
+                    localAction = { this._removeIngredient }
+                    />
                     </FlipMove>
                 </div>
                 <div>

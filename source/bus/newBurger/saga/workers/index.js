@@ -1,0 +1,1 @@
+export { fillBurgerIngredients } from './fillBurgerIngredients';

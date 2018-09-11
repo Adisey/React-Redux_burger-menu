@@ -7,19 +7,18 @@ import { ingredientsActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
 
 export function* fillIngredients () {
+    // yield put(uiActions.startFetching());
     try {
-        yield put(uiActions.startFetching());
         const response = yield apply(api, api.ingredient.fetch);
         const { data: ingredients, message } = yield apply(response, response.json);
 
         if (response.status !== 200) {
             throw new Error(message);
         }
-        // console.log(`ingredients fillIngredients->`, ingredients);
         yield put(ingredientsActions.fillIngredients(ingredients));
     } catch (error) {
         yield put(uiActions.emitError(error, 'FillIngredients worker'));
     } finally {
-        yield put(uiActions.stopFetching());
+        // yield put(uiActions.stopFetching());
     }
 }
