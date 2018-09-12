@@ -42,8 +42,9 @@ export default class Ingredients extends Component {
 
     render () {
         const { actions, ingredients } = this.props;
-        // Поменять на 'View' когда будет функция удаления и изменения
-        const actionMode = 'View__';
+        // ToDo: когда будет функция удаления и изменения, добавить в "localAction" и поменять "actionMode" на 'View'
+        const actionMode = 'View';
+        const localAction = {};
 
         return (
             <div className = 'mainPageIngredients'>
@@ -56,6 +57,9 @@ export default class Ingredients extends Component {
                         actionMode = { actionMode }
                         actions = { actions }
                         ingredients = { ingredients }
+                        localAction = {localAction}
+                        filter = { false }
+
                     />
                 </FlipMove>
             </div>

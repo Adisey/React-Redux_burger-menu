@@ -55,6 +55,7 @@
 
 .barShIng {
     display: flex;
+    flex-direction: column;
     Justify-content: center;
     align-items: center;
     margin: 5px;

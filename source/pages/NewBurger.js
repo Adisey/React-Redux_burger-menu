@@ -27,10 +27,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators({
-            fetchIngredientsAsync:       ingredientsActions.fetchIngredientsAsync,
-            fetchBurgerIngredientsAsync: newBburgersActions.fetchBurgerIngredientsAsync,
-            fillBurgerIngredients:       newBburgersActions.fillBurgerIngredients,
-            createBurgerAsync:           burgersActions.createBurgerAsync,
+            createBurgerAsync:     burgersActions.createBurgerAsync,
+            fetchIngredientsAsync: ingredientsActions.fetchIngredientsAsync,
+            addIngredient:         newBburgersActions.addIngredient,
+            removeIngredient:      newBburgersActions.removeIngredient,
         }, dispatch),
     };
 };
@@ -47,11 +47,9 @@ export default class NewBurger extends Component {
     }
 
     _addIngredient = (id) => {
-        console.log(`_addIngredient ->`, id);
-        this.setState({ selectedIngredients: this.state.availableIngredients });
+        const { actions }= this.props;
 
-        // this.selectedIngredients = this.state.availableIngredients;
-
+        actions.addIngredient(id);
     };
     _removeIngredient = (id) => {
         console.log(`_removeIngredient ->`, id);
@@ -60,6 +58,7 @@ export default class NewBurger extends Component {
     render () {
         const {
             actions,
+            ingredients,
             availableIngredients,
             selectedIngredients,
         } = this.props;
@@ -80,7 +79,8 @@ export default class NewBurger extends Component {
                         <IngredientsJSX
                             actionMode = { actionModeRemove }
                             actions = { actions }
-                            ingredients = { selectedIngredients }
+                            filter = { selectedIngredients }
+                            ingredients = { ingredients }
                             localAction = { this._removeIngredient }
                         />
                     </FlipMove>
@@ -90,7 +90,8 @@ export default class NewBurger extends Component {
                         <IngredientsJSX
                             actionMode = { actionModeAdd }
                             actions = { actions }
-                            ingredients = { availableIngredients }
+                            filter = { availableIngredients }
+                            ingredients = { ingredients }
                             localAction = { this._addIngredient }
                         />
                     </FlipMove>
