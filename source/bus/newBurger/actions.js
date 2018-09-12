@@ -8,21 +8,27 @@ export const newBburgersActions ={
             payload: ingredients,
         };
     },
-    addIngredient: (ingredentId) => {
+    addBurgerIngredient: (ingredentId) => {
         return {
-            type:    type.ADD_INTENT,
+            type:    type.ADD_BURGER_INTENT,
             payload: ingredentId,
         };
     },
-    removeIngredient: (ingredentId) => {
+    removeBurgerIngredient: (ingredentId) => {
         return {
-            type:    type.REMOVE_INTENT,
+            type:    type.REMOVE_BURGER_INTENT,
             payload: ingredentId,
         };
     },
-    addPictire: (ingredentId) => {
+    addAvailableIngredient: (ingredentId) => {
         return {
-            type:    type.ADD_PICTURE,
+            type:    type.ADD_AVAILABLE_INTENT,
+            payload: ingredentId,
+        };
+    },
+    removeAvailableIngredient: (ingredentId) => {
+        return {
+            type:    type.REMOVE_AVAILABLE_INTENT,
             payload: ingredentId,
         };
     },
@@ -31,6 +37,18 @@ export const newBburgersActions ={
         return {
             type:    type.FETCH_BURGER_INGREDIENTS_ASYNC,
             payload: ingredients,
+        };
+    },
+    addIngredientAsync: (ingredentId) => {
+        return {
+            type:    type.ADD_INTENT_ASYNC,
+            payload: ingredentId,
+        };
+    },
+    removeIngredientAsync: (ingredentId) => {
+        return {
+            type:    type.REMOVE_INTENT_ASYNC,
+            payload: ingredentId,
         };
     },
 

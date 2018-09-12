@@ -19,7 +19,7 @@ export default class IngredientsJSX extends Component {
             filter,
         } = this.props;
 
-        console.log(`IngredientsJSX -> actions ->`, actions);
+        // console.log(`IngredientsJSX -> actions ->`, actions);
         // console.log(`IngredientsJSX -> ingredients ->`, ingredients);
         // console.log(`IngredientsJSX -> actionMode ->`, actionMode);
         // console.log(`IngredientsJSX -> localAction ->`, localAction);

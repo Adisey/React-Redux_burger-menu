@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators({
             createBurgerAsync:     burgersActions.createBurgerAsync,
             fetchIngredientsAsync: ingredientsActions.fetchIngredientsAsync,
-            addIngredient:         newBburgersActions.addIngredient,
-            removeIngredient:      newBburgersActions.removeIngredient,
+            addIngredientAsync:    newBburgersActions.addIngredientAsync,
+            removeIngredientAsync: newBburgersActions.removeIngredientAsync,
         }, dispatch),
     };
 };
@@ -49,10 +49,14 @@ export default class NewBurger extends Component {
     _addIngredient = (id) => {
         const { actions }= this.props;
 
-        actions.addIngredient(id);
+        console.log(`Push _addIngredient ->`, id);
+        actions.addIngredientAsync(id);
     };
     _removeIngredient = (id) => {
-        console.log(`_removeIngredient ->`, id);
+        const { actions }= this.props;
+
+        console.log(`Push _removeIngredient ->`, id);
+        actions.removeIngredientAsync(id);
     };
 
     render () {
@@ -65,7 +69,7 @@ export default class NewBurger extends Component {
         const actionModeRemove = 'Remove';
         const actionModeAdd = 'Add';
 
-        console.log(`Render NewBurger -------------------------> this.props ->`, this.props);
+        // console.log(`Render NewBurger -------------------------> this.props ->`, this.props);
 
         return (
             <div className = 'mainPageNewBurger'>
