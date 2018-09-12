@@ -13,15 +13,11 @@ const initalState = fromJS({
 export const newBurgersReducer = (state = initalState, action) => {
     switch (action.type) {
         case type.FILL_BURGER_INGREDIENTS:
-
-            console.log(`Reduser -> action.payload ->`, action.payload);
-
-            const newState =  state.set(
-                'availableIngredients',
-                fromJS(action.payload)
-            );
-
-            return newState;
+            //раньше собирал все свойства ингредиента
+            // const newState =  state.set('availableIngredients', fromJS(action.payload));
+            // теперь только ID
+            return state.set('availableIngredients',
+                fromJS(action.payload.map((ingredient) => ingredient.id)));
         case type.ADD_INTENT:
             return state;
         case type.REMOVE_INTENT:

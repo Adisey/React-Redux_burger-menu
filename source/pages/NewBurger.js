@@ -44,11 +44,6 @@ export default class NewBurger extends Component {
         const { actions } = this.props;
 
         actions.fetchIngredientsAsync();
-        // ToDo: Это не красиво, нужно разобраться как это грузить отдельно.
-        setTimeout(() => {
-            actions.fillBurgerIngredients(this.props.ingredients);
-        }, 1000);
-
     }
 
     _addIngredient = (id) => {
@@ -71,7 +66,6 @@ export default class NewBurger extends Component {
         const actionModeRemove = 'Remove';
         const actionModeAdd = 'Add';
 
-
         console.log(`Render NewBurger -------------------------> this.props ->`, this.props);
 
         return (
@@ -83,12 +77,12 @@ export default class NewBurger extends Component {
                         // selectedIngredientsID = { selectedIngredientsID }
                     />
                     <FlipMove>
-                    <IngredientsJSX
-                    actionMode = { actionModeRemove }
-                    actions = { actions }
-                    ingredients = { selectedIngredients }
-                    localAction = { this._removeIngredient }
-                    />
+                        <IngredientsJSX
+                            actionMode = { actionModeRemove }
+                            actions = { actions }
+                            ingredients = { selectedIngredients }
+                            localAction = { this._removeIngredient }
+                        />
                     </FlipMove>
                 </div>
                 <div>

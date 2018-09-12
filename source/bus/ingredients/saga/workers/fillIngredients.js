@@ -5,6 +5,7 @@ import { put, apply } from 'redux-saga/effects';
 import { api } from '../../../../api';
 import { ingredientsActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
+import { newBburgersActions } from '../../../newBurger/actions';
 
 export function* fillIngredients () {
     // yield put(uiActions.startFetching());
@@ -16,6 +17,8 @@ export function* fillIngredients () {
             throw new Error(message);
         }
         yield put(ingredientsActions.fillIngredients(ingredients));
+        // ToDo: Это не красиво, нужно разобраться как это грузить отдельно из списка ингредиентов.
+        yield put(newBburgersActions.fillBurgerIngredients(ingredients));
     } catch (error) {
         yield put(uiActions.emitError(error, 'FillIngredients worker'));
     } finally {
